@@ -1,0 +1,12 @@
+# Local MVP: backend reads the experiments repo's emitted artifacts (read-only).
+# Assumes INFO_698_experiments sits next to this repo.
+services:
+  backend:
+    build: .
+    environment:
+      - FORGE_ENV=local
+      - FORGE_ARTIFACTS=/data/projects
+    volumes:
+      - ../INFO_698_experiments/projects:/data/projects:ro   # the artifact contract, mounted
+    ports:
+      - "5000:5000"
